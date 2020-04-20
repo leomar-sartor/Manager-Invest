@@ -1,0 +1,35 @@
+﻿** Adicionado nova pasta (OpenCoverXML) na raiz do projeto para o XML gerado pelo OpenCover
+   - Download Versão 4.7.870 (https://github.com/opencover/opencover/releases)
+
+** Adicionado nova pasta (Reports) na raiz do projeto para arquivos de visualização de cobertura de código
+   gerados pelo ReportGenerator
+   - Download Versão 4.5.6 (https://github.com/danielpalme/ReportGenerator/releases)
+
+** Gerar Relatório Xml pelo OpenCover (ComandoOpenCover.png)
+
+.\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test C:\Projetos\Carteira\Manager-Invest\Carteira.Testes\Carteira.Testes.csproj" -output:"C:\Projetos\Carteira\Manager-Invest\Carteira\OpenCoverXML\Teste.xml" -oldStyle	-filter:"+[Carteira.Testes*]*" -register:user
+
+.\OpenCover.Console.exe 
+    -target:"C:\Program Files\dotnet\dotnet.exe" 
+    -targetargs:"test C:\Projetos\Carteira\Manager-Invest\Carteira.Testes\Carteira.Testes.csproj" 
+    -output:"C:\Projetos\Carteira\Manager-Invest\Carteira\OpenCoverXML\Teste.xml" 
+    -oldStyle	
+    -filter:"+[Carteira.Testes*]*" 
+    -register:seu_usuario
+
+** Gerar Relatório para visualização com ReportGenerator (ComandoReportGenerator.png)
+
+.\ReportGenerator.exe -reports:"C:\Projetos\Carteira\Manager-Invest\Carteira\OpenCoverXML\Teste.xml" -targetdir:"C:\Projetos\Carteira\Manager-Invest\Carteira\Reports" -sourcedirs:"C:\Projetos\Carteira\Manager-Invest\Carteira\Reports"
+
+.\ReportGenerator.exe
+	-reports:"C:\Projetos\Carteira\Manager-Invest\Carteira\OpenCoverXML\Teste.xml"
+	-targetdir:"C:\Projetos\Carteira\Manager-Invest\Carteira\Reports"
+	-sourcedirs:"C:\Projetos\Carteira\Manager-Invest\Carteira\Reports"
+
+-- RESULTADOS
+    ** ResultadoCoberturaDeCodigo.png
+    ** ResultadoCoberturaDeCodigoDetalhado.png
+
+-- OBSERVAÇÕES
+
+    ** Utilizado PowerShell com terminal como Administrador

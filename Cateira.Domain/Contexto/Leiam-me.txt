@@ -1,0 +1,7 @@
+﻿https://www.learnentityframeworkcore.com/migrations/commands/pmc-commands
+https://www.learnentityframeworkcore.com/migrations
+PM> get-help entityframework
+
+Nugets
+Microsoft.EntityFrameworkCore.Tools
+Microsoft.EntityFrameworkCore
