@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Carteira.Domain.Contexto
 {
@@ -10,6 +11,8 @@ namespace Carteira.Domain.Contexto
 
         #region DbSet's
         public virtual DbSet<Corretora> Corretoras { get; set; }
+        public virtual DbSet<Ativo> Ativos { get; set; }
+        public virtual DbSet<Operacao> Operacoes { get; set; }
         #endregion
 
         #region Construtores
@@ -31,6 +34,7 @@ namespace Carteira.Domain.Contexto
         private void _ConfigureDataBase()
         {
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
+
             builder.UseSqlServer(_connectionString);
             this.OnConfiguring(builder);
         }
@@ -38,6 +42,28 @@ namespace Carteira.Domain.Contexto
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Instruction - https://www.learnentityframeworkcore.com/configuration/one-to-many-relationship-configuration
+
+            //One to Many Relationship
+            modelBuilder.Entity<Corretora>()
+                .HasMany(c => c.Operacoes)
+                .WithOne(op => op.Corretora)
+                .IsRequired();
+
+            // Other Way
+            //modelBuilder.Entity<Operacao>()
+            //    .HasOne(op => op.Corretora)
+            //    .WithMany(c => c.Operacoes);
+
+            //One to Many Relationship
+            modelBuilder.Entity<Ativo>()
+                .HasMany(a => a.Operacoes)
+                .WithOne(op => op.Ativo)
+                .IsRequired();
         }
         #endregion
     }

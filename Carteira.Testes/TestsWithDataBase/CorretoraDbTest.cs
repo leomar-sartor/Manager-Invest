@@ -21,11 +21,11 @@ namespace Carteira.Testes.TestsWithDataBase
         [TestMethod]
         public async Task DeveCadastraUmaCorretoraDB()
         {
-            var corretora = new CorretoraDefault();
+            var dCorretora = new CorretoraDefault();
 
             var rCorretora = new CorretoraRepository(_context);
 
-            var listaCorretoras = corretora._corretoras;
+            var listaCorretoras = dCorretora._corretoras;
 
             await rCorretora.AdicionarAsync(listaCorretoras);
 
@@ -38,7 +38,7 @@ namespace Carteira.Testes.TestsWithDataBase
             Assert.AreEqual("XP Investimentos", retornoDoBanco[0].Nome);
             Assert.AreEqual("Clear Corretora", retornoDoBanco[1].Nome);
 
-            //listaCorretoras.ForEach(async a => await rCorretora.ExcluirAsync(ap => ap.Id == a.Id));
+            retornoDoBanco.ForEach(async a => await rCorretora.ExcluirAsync(ap => ap.Id == a.Id));
 
             await rCorretora.SalvarAsync();
         }

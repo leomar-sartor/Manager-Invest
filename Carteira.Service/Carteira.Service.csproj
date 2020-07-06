@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
+    <ProjectReference Include="..\Cateira.Domain\Carteira.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace Carteira.Domain
+﻿using System.Collections.Generic;
+
+namespace Carteira.Domain
 {
     public class Corretora
     {
@@ -11,5 +13,7 @@
 
         public int Id { get; set; }
         public string Nome { get; set; }
+
+        public ICollection<Operacao> Operacoes { get; set; }
     }
 }

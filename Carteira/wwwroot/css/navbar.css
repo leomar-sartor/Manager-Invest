@@ -1,0 +1,27 @@
+﻿/*
+    https://stackoverflow.com/questions/42237406/animate-shrink-navbar-on-scroll-using-bootstrap-4
+    https://www.codeply.com/go/62Roy6RDOa
+*/
+
+.affix {
+    padding-top: 0.1em !important;
+    padding-bottom: 0.1em !important;
+    -webkit-transition: padding 0.2s linear;
+    -moz-transition: padding 0.2s linear;
+    -o-transition: padding 0.2s linear;
+    transition: padding 0.2s linear;
+}
+
+.show-bar-always {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 250;
+    width: 100%;
+    box-shadow: rgb(167, 167, 167) 0px 3px 5px;
+    -webkit-transition: padding 0.3s linear;
+    -moz-transition: padding 0.3s linear;
+    -o-transition: padding 0.3s linear;
+    transition: padding 0.3s linear;
+    background-color: aliceblue;
+}

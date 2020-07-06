@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Carteira.Domain.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 namespace Carteira
 {
@@ -28,6 +30,12 @@ namespace Carteira
 
             services.AddMvc();
 
+            services.AddControllersWithViews();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            //Connect vue app - middleware
+            services.AddSpaStaticFiles(options => options.RootPath = "Srcipts/index.js");
+
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,7 +51,11 @@ namespace Carteira
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
+
+            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -56,6 +68,7 @@ namespace Carteira
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
