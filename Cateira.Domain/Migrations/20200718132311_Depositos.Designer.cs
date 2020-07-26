@@ -4,14 +4,16 @@ using Carteira.Domain.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Carteira.Domain.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20200718132311_Depositos")]
+    partial class Depositos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,28 +96,16 @@ namespace Carteira.Domain.Migrations
                     b.Property<long>("AtivoId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Corretagem")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("CorretoraId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("CustoMedio")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Emolumentos")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrecoUnitario")
+                    b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Quantidade")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SaldoCotas")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<short>("TipoOperacao")

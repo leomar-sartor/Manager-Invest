@@ -9,7 +9,7 @@ namespace Carteira.Domain
 {
     public class Ativo
     {
-        private string sigla;
+        private string _sigla;
 
         public Ativo()
         {
@@ -35,12 +35,12 @@ namespace Carteira.Domain
         {
             get
             {
-                return sigla;
+                return _sigla;
             }
             set
             {
                 if(!string.IsNullOrEmpty(value))
-                    sigla = value.ToUpper();
+                    _sigla = value.ToUpper();
             }
         }
 

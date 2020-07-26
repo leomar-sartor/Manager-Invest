@@ -4,14 +4,16 @@ using Carteira.Domain.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Carteira.Domain.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20200725232329_CalculosCustoMedio")]
+    partial class CalculosCustoMedio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

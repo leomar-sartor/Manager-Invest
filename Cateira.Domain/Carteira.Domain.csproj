@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200505194709_Teste2.Designer.cs" />
     <Compile Remove="Migrations\20200526235413_Correct Class Ativo.cs" />
     <Compile Remove="Migrations\20200526235413_Correct Class Ativo.Designer.cs" />
+    <Compile Remove="Migrations\20200718131657_Depositos.cs" />
+    <Compile Remove="Migrations\20200718131657_Depositos.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

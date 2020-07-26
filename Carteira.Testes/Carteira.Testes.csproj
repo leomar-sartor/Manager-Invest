@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
+    <ProjectReference Include="..\Carteira.Service\Carteira.Service.csproj" />
     <ProjectReference Include="..\Cateira.Domain\Carteira.Domain.csproj" />
   </ItemGroup>
 

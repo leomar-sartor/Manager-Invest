@@ -2,6 +2,7 @@
 
 namespace Carteira.Domain
 {
+    //Usaar Entidade Financeira e extender Cooretora e Bancos
     public class Corretora
     {
         public Corretora() { }
@@ -15,5 +16,7 @@ namespace Carteira.Domain
         public string Nome { get; set; }
 
         public ICollection<Operacao> Operacoes { get; set; }
+
+        public ICollection<Deposito> Depositos { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace Carteira.Domain.Contexto
         public virtual DbSet<Corretora> Corretoras { get; set; }
         public virtual DbSet<Ativo> Ativos { get; set; }
         public virtual DbSet<Operacao> Operacoes { get; set; }
+
+        public virtual DbSet<Deposito> Depositos { get; set; }
         #endregion
 
         #region Construtores
@@ -64,6 +66,12 @@ namespace Carteira.Domain.Contexto
                 .HasMany(a => a.Operacoes)
                 .WithOne(op => op.Ativo)
                 .IsRequired();
+
+            modelBuilder.Entity<Deposito>()
+                .HasOne(d => d.Corretora)
+                .WithMany(c => c.Depositos)
+                .IsRequired();
+
         }
         #endregion
     }
