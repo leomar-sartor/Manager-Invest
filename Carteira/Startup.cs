@@ -11,6 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using DinkToPdf.Contracts;
+using DinkToPdf;
+using System.IO;
+using Carteira.Utility;
 
 namespace Carteira
 {
@@ -19,6 +23,13 @@ namespace Carteira
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
+
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -35,6 +46,28 @@ namespace Carteira
 
             //Connect vue app - middleware
             services.AddSpaStaticFiles(options => options.RootPath = "Srcipts/index.js");
+
+            //Dink to Pdf
+            //services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+            // Configurações do DinkToPDF
+            // Verifica qual a arquiterura para utilizar os arquivos necessários
+            var architectureFolder = (IntPtr.Size == 8) ? "64 bit" : "32 bit";
+            // Encontra o caminho onde estão os arquivos
+            //var wkHtmlToPdfPath = Path.Combine(_hostingEnvironment.ContentRootPath, $"v0.12.4\\{architectureFolder}\\libwkhtmltox");
+
+            var wkHtmlToPdfPath = Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox");
+            
+            // Carrega os arquivos necessários, passadas as configurações
+            CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(wkHtmlToPdfPath);
+
+            // Configuração do DinkToPdf
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+            // Configuração do conversor de razor views para string
+            services.AddScoped<IViewRenderService, ViewRenderService>();
+            //End COnfiguration
 
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(
@@ -72,3 +105,4 @@ namespace Carteira
         }
     }
 }
+

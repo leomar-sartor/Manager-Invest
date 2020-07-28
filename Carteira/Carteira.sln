@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.Service", "..\Cart
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.Testes", "..\Carteira.Testes\Carteira.Testes.csproj", "{94F69CAE-9550-4B0A-9842-E34F1FC9CB40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carteira.ConsoleComands", "..\Carteira.ConsoleComands\Carteira.ConsoleComands.csproj", "{6A3878A3-407F-4BBB-BEA9-5B6715A0AC48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.ConsoleComands", "..\Carteira.ConsoleComands\Carteira.ConsoleComands.csproj", "{6A3878A3-407F-4BBB-BEA9-5B6715A0AC48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carteira.ConsoleFastTest", "..\Carteira.ConsoleFastTest\Carteira.ConsoleFastTest.csproj", "{929CF265-4E8B-4C84-928A-E94412E7F8EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6A3878A3-407F-4BBB-BEA9-5B6715A0AC48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A3878A3-407F-4BBB-BEA9-5B6715A0AC48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A3878A3-407F-4BBB-BEA9-5B6715A0AC48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{929CF265-4E8B-4C84-928A-E94412E7F8EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{929CF265-4E8B-4C84-928A-E94412E7F8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{929CF265-4E8B-4C84-928A-E94412E7F8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{929CF265-4E8B-4C84-928A-E94412E7F8EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
