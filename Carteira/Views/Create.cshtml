@@ -1,0 +1,22 @@
+﻿@model List<Carteira.Models.Employee>
+
+@{
+    ViewData["Title"] = "Create Dink to PDF";
+}
+
+<h1>Dink to PDF</h1>
+
+<hr />
+<div class="row">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name</li>
+            <li>@item.LastName</li>
+            <li>@item.Age</li>
+            <li>@item.Gender</li>
+        }
+
+    </ul>
+</div>
+

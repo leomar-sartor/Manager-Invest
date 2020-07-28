@@ -22,7 +22,7 @@
             <div class="col-md-12">
 
                 <div class="card-header text-muted" style="margin-bottom:0.5em;">
-                    <form id="contentFilter">
+                    <form id="contentFilter" method="post">
                         <div class="form-row">
                             <div class="col-2">
                                 <label asp-for="Codigo" class="control-label"></label>
@@ -50,8 +50,8 @@
                     <thead class="thead-light">
                         <tr>
                             @*<th class="text-center">
-                                <i class="fa fa-cog"></i>
-                            </th>*@
+                                    <i class="fa fa-cog"></i>
+                                </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.Codigo)
                             </th>
@@ -145,12 +145,23 @@
                 "serverSide": true,
                 "filter": false,
                 //"orderMulti": false,
-                "ajax": function (data, callback, settings) {
-                    var params = $("#contentFilter").serialize();
-                    var linkCompleto = "/Corretora/Pagination" + "?" + params;
-                    return $.getJSON(linkCompleto, data, callback);
-                },
-                //"ajax": function (data, callback, settings) {
+                //"ajax": {
+                //    var params = $("#contentFilter").serialize();
+
+
+                //    var linkCompleto = "/Corretora/Pagination" + "?" + params;
+                //    return $.getJSON(linkCompleto, data, callback);
+                //},
+
+                "ajax": {
+                    "url": "/Corretora/Pagination",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.myKey = $("#contentFilter").serialize();
+                        // d.custom = $('#myInput').val();
+                        // etc
+                    }
+                },                //"ajax": function (data, callback, settings) {
                 //    var params = $("#contentFilter").serialize();
                 //    var linkCompleto = "localhost:60238/Corretora/Pagination" + "?" + params;
 
@@ -184,8 +195,8 @@
                 "pageLength": 3
             });
 
-           
-           
+
+
 
             $('.delete-item').on("click", function () {
                 let Id = $(this).data('id');
