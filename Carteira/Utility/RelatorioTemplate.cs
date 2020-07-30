@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Carteira.Models;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,8 +11,10 @@ namespace Carteira.Utility
 
     public class RelatorioTemplate
     {
+        public int _linesPerPage = 0;
         public int Width { get; set; } = 2470;
         public int Height { get; set; } = 2230;
+        public string _style = "";
 
         private StringBuilder _sb_classLine = new StringBuilder(".linha");
         private StringBuilder _sb_classPage = new StringBuilder(".page");
@@ -26,6 +31,32 @@ namespace Carteira.Utility
                                             " background-color: darkgray;" +
                                             "}";
 
+        #region HTML
+        public int _countLine { get; set; }
+        //HTML
+        public string _InitHtml = @"<html> --style--
+
+            <body>";
+        public string _EndHtml = " </body> </html> ";
+
+        //PAGE
+        public string _startPage = "<div class='page'>";
+        public string _endPage = "</div>";
+
+        //HEADER E FOOTER
+        public string _header = "<div class='header'> Cabeçalho </div>";
+        public string _footer = "<div class='footer'> Rodapé </div>";
+
+        //CORPO
+        public string _startBody = "<div class='body'>";
+        public string _endBody = "</div>";
+
+        //LINHA
+        public string _startLine = " <div class='linha'>";
+        public string _endLine = "</div>";
+        #endregion
+
+
         private StringBuilder _sb = new StringBuilder();
 
         public RelatorioTemplate()
@@ -33,6 +64,7 @@ namespace Carteira.Utility
             Header = new Header();
             Body = new Body();
             Footer = new Footer();
+            //_style = BuildStyle();
         }
 
         public Header Header { get; set; }
@@ -49,14 +81,14 @@ namespace Carteira.Utility
 
             var sb = new StringBuilder();
 
-            sb.Append("<script>");
+            sb.Append("<style>");
             sb.Append(_stylePage);
             sb.Append(_styleHeader);
             sb.Append(_styleBody);
             sb.Append(_styleLine);
             sb.Append(_styleFooter);
             sb.Append(_styleQuebraPagina);
-            sb.Append("</script>");
+            sb.Append("</style>");
 
             return sb.ToString();
         }
@@ -77,8 +109,8 @@ namespace Carteira.Utility
         public void BuildStyleHeader()
         {
             _sb_classHeader.AppendLine(" {");
-            _sb_classHeader.AppendLine($" width: {Width}px;");
-            _sb_classHeader.AppendLine($" height: {Height}px;");
+            _sb_classHeader.AppendLine($" width: {Header.Width}px;");
+            _sb_classHeader.AppendLine($" height: {Header.Height}px;");
             _sb_classHeader.AppendLine($" background-color: chocolate;");
             _sb_classHeader.AppendLine("}");
 
@@ -87,7 +119,7 @@ namespace Carteira.Utility
 
         public void BuildStyleLine()
         {
-            var NumeroDeLinhasPorPagina = Body.Height / (Body.FontSize + 2);
+            _linesPerPage = Body.Height / (Body.FontSize + 2);
             var AlturaDaLinha = Body.FontSize + 2;
 
             _sb_classLine.AppendLine(" {");
@@ -121,6 +153,83 @@ namespace Carteira.Utility
             _sb_classFooter.AppendLine("}");
 
             _styleFooter = _sb_classFooter.ToString();
+        }
+
+        public string GeneratePDF(List<Employee> empregados)
+        {
+            _style = BuildStyle();
+
+            _countLine = 0;
+            int countTotal = 0;
+            int countFinal = empregados.Count();
+
+
+            var builders = new List<StringBuilder>();
+
+            var sb = new StringBuilder();
+
+
+            foreach (var empregado in empregados)
+            {
+
+                if (_countLine == 0)
+                {
+                    sb.Append(_startPage);
+
+                    sb.Append(_header);
+
+                    sb.Append(_startBody);
+                }
+
+                sb.Append(_startLine);
+
+                sb.AppendFormat(@"{0}", empregado.Name);
+
+                sb.Append(_endLine);
+
+                _countLine++;
+                countTotal++;
+
+                if (_countLine == _linesPerPage || countTotal == countFinal)
+                {
+                    sb.Append(_endBody);
+
+                    sb.Append(_footer);
+
+                    sb.Append(_endPage);
+
+                    if (!(countTotal == countFinal))
+                        sb.Append("<div class='quebra-pagina'></div>");
+
+                    builders.Add(sb);
+
+                    sb = new StringBuilder();
+
+                    _countLine = 0;
+                }
+            }
+
+            return montarHTML(builders);
+        }
+
+        public string montarHTML(List<StringBuilder> conteudo)
+        {
+            var sb = new StringBuilder();
+
+            var novo = _InitHtml.Replace("--style--", _style);
+
+            sb.Append(novo);
+
+            foreach (var pagina in conteudo)
+            {
+                sb.Append(pagina.ToString());
+            }
+
+            sb.Append(_EndHtml);
+
+            var res = sb.ToString();
+
+            return res;
         }
     }
 

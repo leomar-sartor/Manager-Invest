@@ -10,7 +10,46 @@ namespace Carteira.Utility
         public static int _countLine { get; set; }
         //HTML
         public static string _InitHtml = @"<html> 
+                <style>
+.page {
+    background-color: cadetblue;
+    padding: 0;
+    margin: 0;
+    width: 2470px;
+    height: 2230px;
+}
 
+.header {
+    background-color: chocolate;
+    width: 2470px;
+    height: 260px;
+}
+
+.linha {
+    background-color: cyan;
+    width: 2470px;
+    height: 50px;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body {
+    width: 2470px;
+    height: 1700px;
+}
+
+.footer {
+    background-color: cornflowerblue;
+    width: 2470px;
+    height: 260px;
+}
+
+.quebra-pagina {
+    page-break-after: always;
+    background-color: darkgray;
+}
+
+                </style>
             <body>";
         public static string _EndHtml = " </body> </html> ";
 

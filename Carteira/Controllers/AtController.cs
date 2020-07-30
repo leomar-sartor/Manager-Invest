@@ -256,11 +256,11 @@ namespace Carteira.Controllers
 
         public ActionResult Leomar()
         {
-            var template = new RelatorioTemplate();
-            template.Body.FontSize = 12;
-            var style = template.BuildStyle();
+            var dados = DataStorage.GetEmployees();
 
-            var fileStyle = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css");
+            var template = new RelatorioTemplate();
+            template.Body.FontSize = 48;
+            var elements = template.GeneratePDF(dados);
 
             var globalSettings = new GlobalSettings
             {
@@ -269,32 +269,18 @@ namespace Carteira.Controllers
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 1, Bottom = 0, Left = 0, Right = 0 },
                 DocumentTitle = "FIRST PDF"
-                //Out = @"C:\Projetos\Employee_Report.pdf"
             };
-
-            var dados = DataStorage.GetEmployees();
 
             var objectSettings = new ObjectSettings
             {
                 //PagesCount = true,
-                HtmlContent = TemplateLeomar.GeneratePDF(dados),
+                HtmlContent = elements,
                 //Page = "https://code-maze.com/",
-                //UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css")
-                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = style },
+                WebSettings = { DefaultEncoding = "utf-8" }
                 //HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
                 //FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" },
             };
-
-            var objectSettings2 = new ObjectSettings
-            {
-                //PagesCount = true,
-                HtmlContent = TemplateLeomar.GeneratePDF(dados),
-                //Page = "https://code-maze.com/",
-                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
-                //HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                //FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" },
-            };
-
+            
             var pdf = new HtmlToPdfDocument()
             {
                 GlobalSettings = globalSettings,
