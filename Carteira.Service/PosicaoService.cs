@@ -1,19 +1,11 @@
-<<<<<<< Updated upstream
-﻿using Carteira.Domain.Contexto;
-using Carteira.Domain.Enums;
-=======
 ﻿using Carteira.Entity.Contexto;
->>>>>>> Stashed changes
 using Carteira.Repository;
 using Carteira.Service.Models;
 using System;
-<<<<<<< Updated upstream
-=======
 using Carteira.Entity.Enuns;
 using System.Linq;
-//using Carteira.Entity.Migrations;
+using Carteira.Entity.Migrations;
 using Microsoft.Extensions.Options;
->>>>>>> Stashed changes
 using System.Collections.Generic;
 using System.Linq;
 

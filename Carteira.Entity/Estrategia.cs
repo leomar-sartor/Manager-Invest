@@ -1,9 +1,8 @@
-﻿using Carteira.Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Carteira.Domain
+namespace Carteira.Entity
 {
     public class Estrategia
     {

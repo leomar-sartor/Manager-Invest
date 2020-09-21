@@ -1,4 +1,4 @@
-﻿namespace Carteira.Domain
+﻿namespace Carteira.Entity
 {
     public class Apuracao
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Carteira.Domain
+namespace Carteira.Entity
 {
     public class Investimento
     {

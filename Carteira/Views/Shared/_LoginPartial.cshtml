@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Carteira.Areas.Identity.Data
+@using Carteira.Entity.Contexto;
 
-@inject SignInManager<CarteiraUser> SignInManager
-@inject UserManager<CarteiraUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
