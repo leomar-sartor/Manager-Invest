@@ -1,5 +1,5 @@
-﻿using Carteira.Domain;
-using Carteira.Domain.Enums;
+﻿using Carteira.Entity;
+using Carteira.Entity.Enuns;
 using System;
 using System.Collections.Generic;
 using System.Text;

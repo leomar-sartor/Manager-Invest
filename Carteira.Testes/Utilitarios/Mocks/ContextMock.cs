@@ -1,9 +1,6 @@
-﻿using Carteira.Domain.Contexto;
+﻿using Carteira.Entity.Contexto;
 using Carteira.Testes.Utilitarios.ObjectDefault;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Carteira.Testes.Utilitarios.Mocks
 {

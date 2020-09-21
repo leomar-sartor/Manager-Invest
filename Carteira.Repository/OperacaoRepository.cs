@@ -1,5 +1,5 @@
-﻿using Carteira.Domain;
-using Carteira.Domain.Contexto;
+﻿using Carteira.Entity;
+using Carteira.Entity.Contexto;
 
 namespace Carteira.Repository
 {

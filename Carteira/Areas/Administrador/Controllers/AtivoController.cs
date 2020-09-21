@@ -1,16 +1,17 @@
-﻿using Carteira.Domain;
-using Carteira.Domain.Contexto;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Carteira.Entity;
+using Carteira.Entity.Contexto;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace Carteira.Controllers
+namespace Carteira.Areas.Administrador.Controllers
 {
+    [Area("Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class AtivoController : Controller
     {
         private readonly Context _context;
@@ -112,6 +113,3 @@ namespace Carteira.Controllers
         }
     }
 }
-
-
-

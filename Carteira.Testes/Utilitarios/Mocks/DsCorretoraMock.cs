@@ -1,5 +1,5 @@
-﻿using Carteira.Domain;
-using Carteira.Domain.Contexto;
+﻿using Carteira.Entity;
+using Carteira.Entity.Contexto;
 using Carteira.Repository;
 using Microsoft.EntityFrameworkCore;
 using Moq;

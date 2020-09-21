@@ -6,6 +6,7 @@
 $(window).scroll(function () {
     /* affix after scrolling 95px */
     if ($(document).scrollTop() > 95) {
+
         //se elemento form-default existir => alinha o header do form para debaixo da navbar
         //adiciona a classe show-bar-always ao card-header do elemento
         if ($("#form-default").length) {
@@ -31,3 +32,4 @@ $(window).scroll(function () {
         }
     }
 });
+

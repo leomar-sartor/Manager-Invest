@@ -1,4 +1,4 @@
-﻿using Carteira.Domain;
+﻿using Carteira.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

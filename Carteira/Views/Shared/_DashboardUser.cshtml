@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Carteira.Entity.Contexto
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var _NOME_ = await UserManager.GetUserAsync(User);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="author" content="Leomar Vaz Sartor">
+    <meta name="description" content="Carteira de Fundos Imobiliários">
+    <meta name="keywords" content="FII, Fundos Imobiliários, Carteira, Balanceamento de Carteira, Estratégia, Investimentos">
+    <meta http-equiv="content-language" content="pt-br" />
+    @*<meta http-equiv="refresh" content="35;url=http://localhost:60238/" />*@
+    <meta name="robots" content="index,follow">
+
+    <title>Carteira - Fundos Imobiliários</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link href="~/lib/data-tables/datatables.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index:999">
+                <div class="container">
+
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                    </a>
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="min-height: 55px;">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sou Carteira</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+
+                            <form method="post" asp-area="usuario" asp-controller="account" asp-action="logout" class="form-inline" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-warning my-2 my-sm-0 dropdown-toggle" aria-haspopup="true" type="submit"> <i class="fa fa-user-circle-o" aria-hidden="true"></i> @_NOME_.Nome.Split(" ")[0]  </button>
+                            </form>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+
+                                <a class="dropdown-item" asp-area="Usuario" asp-controller="Perfil" asp-action="Index"> <i class="fa fa-id-card"></i> Perfil </a>
+                                <a class="dropdown-item" asp-area="Usuario" asp-controller="Configuracao" asp-action="Index"><i class="fa fa-cogs"></i> Configurações </a>
+                                <div class="dropdown-divider"></div>
+
+                                <form method="post" asp-area="" asp-controller="account" asp-action="logout" class="form-inline">
+                                    <button class="dropdown-item" type="submit"><i class="fa fa-sign-out"></i> Sair </button>
+                                </form>
+
+                            </div>
+
+                        </li>
+                    </ul>
+                    }
+                    else
+                    {
+                    <span class="navbar-text">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Registrar</a>
+                    </span>
+
+                    <span class="navbar-text">
+                        <a class="btn btn-outline-warning my-2 my-sm-0" asp-controller="account" asp-action="login"> Login </a>
+                    </span>
+                    }
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
+            </nav>
+
+        </header>
+
+        <main role="main" style="margin-top:71px;">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+
+
+                        <div class="sidebar-sticky pt-3">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <span data-feather="home"></span>
+                                        Painel <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                <span>Dados</span>
+                                <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                                    <span data-feather="plus-circle"></span>
+                                </a>
+                            </h6>
+                            <ul class="nav flex-column mb-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <span data-feather="file-text"></span>
+                                        Perfil
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <span data-feather="file-text"></span>
+                                        Configurções
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="min-vh-100">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section id="footer" class="footer navbar-fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                        <ul class="list-unstyled list-inline social text-center">
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                        <p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
+                        <p class="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </section>
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/dist/app.js"></script>
+        <script src="~/lib/data-tables/datatables.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

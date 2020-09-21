@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Carteira.Entity\Carteira.Entity.csproj" />
     <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
     <ProjectReference Include="..\Carteira.Service\Carteira.Service.csproj" />
-    <ProjectReference Include="..\Cateira.Domain\Carteira.Domain.csproj" />
   </ItemGroup>
 
 </Project>

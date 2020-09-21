@@ -13,7 +13,7 @@
         // modules contains Special compilation rules 
         rules: [
             {   // Ask webpack to check: If this file ends with .js, then apply some transforms
-                test: /\.js$/,
+                test: /\.s(c|a)ss$/, //test: /\.js$/,
                 // don't transform node_modules folder  this folder need not to be compiled and not needed at production mode
                 exclude: /node_modules/,
                 // load this .js file using babel loader so as to make it compactible with any browser
@@ -29,4 +29,5 @@
             }
         ]
     }
-};
+}
+

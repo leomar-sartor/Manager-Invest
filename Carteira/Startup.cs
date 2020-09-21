@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Carteira.Domain.Contexto;
+using Carteira.Entity.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -15,6 +15,7 @@ using DinkToPdf.Contracts;
 using DinkToPdf;
 using System.IO;
 using Carteira.Utility;
+using Microsoft.AspNetCore.Identity;
 
 namespace Carteira
 {
@@ -25,12 +26,12 @@ namespace Carteira
             Configuration = configuration;
         }
 
-        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
+        //private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
 
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _hostingEnvironment = hostingEnvironment;
-        }
+        //public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
+        //{
+        //    _hostingEnvironment = hostingEnvironment;
+        //}
 
         public IConfiguration Configuration { get; }
 
@@ -39,9 +40,30 @@ namespace Carteira
         {
             services.AddControllersWithViews();
 
+            // 2º - Identity
+            //O método AddIdentity() adiciona a configuração padrão do sistema de identidade para os tipos de usuário e perfis ou role especificados.
+            //A classe IdentityUser é fornecida pela ASP.NET Core e contém propriedades para UserName, PasswordHash, Email etc.
+            //Essa é a classe usada por padrão pelo Identity para gerenciar usuários registrados do seu aplicativo.
+            services.AddIdentity<ApplicationUser, IdentityRole>(
+                    options =>
+                    {
+                        options.Password.RequiredLength = 6;
+                        options.Password.RequiredUniqueChars = 3;
+                        options.Password.RequireNonAlphanumeric = false;
+                    }
+              )
+              .AddEntityFrameworkStores<Context>();
+
+            //https://github.com/dotnet/aspnetcore
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.Password.RequiredLength = 6;
+            //    options.Password.RequiredUniqueChars = 3;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //});
+
             services.AddMvc();
 
-            services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
             //Connect vue app - middleware
@@ -57,7 +79,7 @@ namespace Carteira
             //var wkHtmlToPdfPath = Path.Combine(_hostingEnvironment.ContentRootPath, $"v0.12.4\\{architectureFolder}\\libwkhtmltox");
 
             var wkHtmlToPdfPath = Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox");
-            
+
             // Carrega os arquivos necessários, passadas as configurações
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
             context.LoadUnmanagedLibrary(wkHtmlToPdfPath);
@@ -93,13 +115,22 @@ namespace Carteira
 
             app.UseRouting();
 
+            //3º Identity
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                   name: "areas",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
 
         }

@@ -1,4 +1,50 @@
-﻿/*.header {
+﻿
+
+/*/*@page {
+    margin: 0cm 0cm;
+}
+
+/** Define now the real margins of every page in the PDF 
+body {
+    margin-top: 2cm;
+    margin-left: 2cm;
+    margin-right: 2cm;
+    margin-bottom: 2cm;
+}
+
+/** Define the header rules
+header {
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    /** Extra personal styles 
+    background-color: #03a9f4;
+    color: white;
+    text-align: center;
+    line-height: 1.5cm;
+}
+
+/** Define the footer rules 
+footer {
+    position: fixed;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    /** Extra personal styles 
+    background-color: #03a9f4;
+    color: white;
+    text-align: center;
+    line-height: 1.5cm;
+}
+*/
+
+
+/* Leomar
+    
+ .header {
     text-align: center;
     color: green;
     padding-bottom: 35px;
@@ -19,8 +65,10 @@ td, th {
 table th {
     background-color: green;
     color: white;
-}*/
+}
+    */
 
+/* Leomar Linha
 .page {
     background-color: cadetblue;
     padding: 0;
@@ -58,7 +106,7 @@ table th {
     page-break-after: always;
     background-color: darkgray;
 }
-
+    */
 
 /**
 2480 X 3500

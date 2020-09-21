@@ -24,6 +24,7 @@ namespace Carteira.Controllers
         //https://stackoverflow.com/questions/55419335/separating-page-breaks-with-dinktopdf
         //https://github.com/worlduniting/bookshop/wiki/wkhtmltopdf-options
         //https://www.csharpcodi.com/csharp-examples/DinkToPdf.BasicConverter.ApplyConfig(System.IntPtr,%20ISettings,%20bool)/
+        //https://wkhtmltopdf.org/libwkhtmltox/pagesettings.html#pagePdfObject
         private IConverter _converter;
 
         private readonly IViewRenderService _viewRenderService;
@@ -48,9 +49,8 @@ namespace Carteira.Controllers
                 ColorMode = ColorMode.Color,
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 10 },
+                Margins = new MarginSettings { Top = 50},
                 DocumentTitle = "FIRST PDF"
-                //Out = @"C:\Projetos\Employee_Report.pdf"
             };
 
             var objectSettings = new ObjectSettings
@@ -59,8 +59,8 @@ namespace Carteira.Controllers
                 HtmlContent = TemplateGenerator.GetHTMLString(),
                 //Page = "https://code-maze.com/",
                 WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
-                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" },
+                HeaderSettings = { Spacing = 0, FontName = "Arial", FontSize = 10, Right = "Pag. [page] de [toPage]", Line = true, Center = "<div id='fundo'> TESTE LEOMAR </div>info", HtmUrl = Path.Combine(Directory.GetCurrentDirectory(), "assets", "header.html") },
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Rodapé" },
             };
 
             var pdf = new HtmlToPdfDocument()
@@ -293,5 +293,7 @@ namespace Carteira.Controllers
             //return File(file, "application/pdf", "EmployeeReport.pdf");
             return File(file, "application/pdf");
         }
+
+       
     }
 }
