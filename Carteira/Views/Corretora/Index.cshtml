@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header text-muted">
-        <div id="contect-default-header">
+        <div id="content-default-header">
             <a class="btn btn-sm btn-primary float-left" asp-action="Index" asp-controller="Home" role="button">
                 <i class="fa fa-arrow-circle-left"></i>
                 Voltar
@@ -46,7 +46,7 @@
                     </form>
                 </div>
 
-                <table id="table-index" class="table table-sm">
+                <table id="table-index" class="table table-sm" style="width: 100%;">
                     <thead class="thead-light">
                         <tr>
                             @*<th class="text-center">
@@ -144,6 +144,7 @@
                 "processing": true,
                 "serverSide": true,
                 "filter": false,
+                //"width": '100%',
                 //"orderMulti": false,
                 //"ajax": {
                 //    var params = $("#contentFilter").serialize();

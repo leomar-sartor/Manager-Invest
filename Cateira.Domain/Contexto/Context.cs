@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Carteira.Domain.Contexto
 {
@@ -13,6 +16,8 @@ namespace Carteira.Domain.Contexto
         public virtual DbSet<Corretora> Corretoras { get; set; }
         public virtual DbSet<Ativo> Ativos { get; set; }
         public virtual DbSet<Operacao> Operacoes { get; set; }
+
+        public virtual DbSet<Apuracao> Apuracoes { get; set; }
 
         public virtual DbSet<Deposito> Depositos { get; set; }
         #endregion
@@ -72,6 +77,10 @@ namespace Carteira.Domain.Contexto
                 .WithMany(c => c.Depositos)
                 .IsRequired();
 
+            modelBuilder.Entity<Operacao>()
+                .HasOne(m => m.Apuracao)
+                .WithOne(m => m.Operacao)
+                .HasForeignKey("Apuracao");
         }
         #endregion
     }

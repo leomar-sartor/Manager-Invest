@@ -6,16 +6,18 @@ namespace Carteira.Domain
 {
     public class Operacao
     {
-        public decimal _custoMedioOperacao;
-
-        public decimal _custoOperacao;
-
-        public Operacao()
-        {
-
-        }
-
-        public Operacao(Ativo ativo, Corretora corretora, decimal quantidade, decimal preco, TipoOperacao operacao, DateTime data, decimal corretagem = 0M, decimal emolumentos = 0M)
+        public Operacao() { }
+        public Operacao(
+            Ativo ativo,
+            Corretora corretora,
+            decimal quantidade,
+            decimal preco,
+            TipoOperacao operacao,
+            DateTime data,
+            decimal taxaLiquidacao = 0M,
+            decimal emolumentos = 0M,
+            decimal corretagem = 0M
+            )
         {
             Ativo = ativo;
             Corretora = corretora;
@@ -23,27 +25,24 @@ namespace Carteira.Domain
             PrecoUnitario = preco;
             TipoOperacao = operacao;
             Data = data;
+            TaxaLiquidacao = taxaLiquidacao;
             Corretagem = corretagem;
             Emolumentos = emolumentos;
         }
-
         public long Id { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Quantidade { get; set; }
 
-
         [Column(TypeName = "decimal(18,2)")]
         public decimal PrecoUnitario { get; set; }
-
-        public Ativo Ativo { get; set; }
-
-        public Corretora Corretora { get; set; }
 
         public TipoOperacao TipoOperacao { get; set; }
 
         public DateTime Data { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TaxaLiquidacao { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Corretagem { get; set; }
@@ -55,34 +54,12 @@ namespace Carteira.Domain
         public decimal SaldoCotas { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal CustoMedioOperacao
-        {
-            get
-            {
-                _custoMedioOperacao = Math.Round((((Quantidade * PrecoUnitario) + (Emolumentos + Corretagem)) / Quantidade), 2);
-                return _custoMedioOperacao;
-            }
-            set
-            {
-                _custoMedioOperacao = value;
-            }
-        }
+        public decimal PrecoMedioDoAtivo { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal CustoOperacao
-        {
-            get
-            {
-                _custoOperacao = Math.Round(((Quantidade * PrecoUnitario) + (Emolumentos + Corretagem)), 2);
-                return _custoOperacao;
-            }
-            set
-            {
-                _custoOperacao = value;
-            }
-        }
+        public Ativo Ativo { get; set; }
 
-        //[Column(TypeName = "decimal(18,2)")]
-        //public decimal CustoMedio { get; set; }
+        public Corretora Corretora { get; set; }
+
+        public Apuracao Apuracao { get; set; }
     }
 }
