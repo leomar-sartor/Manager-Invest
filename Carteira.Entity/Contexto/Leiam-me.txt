@@ -1,0 +1,16 @@
+﻿https://www.learnentityframeworkcore.com/migrations/commands/pmc-commands
+https://www.learnentityframeworkcore.com/migrations
+PM> get-help entityframework
+
+Nugets
+Microsoft.EntityFrameworkCore.Tools
+Microsoft.EntityFrameworkCore
+
+Set as Startup Project - Carteira
+Package Manager Console - Carteira.Domain
+
+Add-Migration 'Name'
+Remove-Migration
+Script-Migration
+
+Update-DataBase
