@@ -25,8 +25,11 @@ namespace Carteira.Testes.Utilitarios.ObjectDefault
             var AtivoTen = new Ativo("Tesouro IPCA +", "NTN-B Principal", TipoInvestimento.RendaFixa, TipoPapel.TesouroDireto);
             var AtivoEleven = new Ativo("Tesouro IPCA + com Juros Semestrais ", "NTN-B", TipoInvestimento.RendaFixa, TipoPapel.TesouroDireto);
             var AtivoTwelve = new Ativo("Visc", "Visc11", TipoInvestimento.RendaVariavel, TipoPapel.FundoImobiliario);
+            var AtivoThete = new Ativo("Btlg", "Btlg11", TipoInvestimento.RendaVariavel, TipoPapel.FundoImobiliario);
+            var AtivoForty = new Ativo("Vino", "Vino11", TipoInvestimento.RendaVariavel, TipoPapel.FundoImobiliario);
 
-            _ativos.AddRange(new List<Ativo> { AtivoOne, AtivoTwo, AtivoThree, AtivoFour, AtivoFive, AtivoSix, AtivoSeven, AtivoEight, AtivoNine, AtivoTen, AtivoEleven, AtivoTwelve });
+            _ativos.AddRange(new List<Ativo> { AtivoOne, AtivoTwo, AtivoThree, AtivoFour, AtivoFive, AtivoSix,
+                AtivoSeven, AtivoEight, AtivoNine, AtivoTen, AtivoEleven, AtivoTwelve, AtivoThete, AtivoForty });
         }
     }
 }
