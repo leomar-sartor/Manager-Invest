@@ -1,5 +1,5 @@
-﻿using Carteira.Domain.Contexto;
-using Carteira.Domain.Enums;
+﻿using Carteira.Entity.Contexto;
+using Carteira.Entity.Enuns;
 using Carteira.Repository;
 using Carteira.Testes.Utilitarios.ObjectDefault;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

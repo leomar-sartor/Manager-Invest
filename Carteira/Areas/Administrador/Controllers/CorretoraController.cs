@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Carteira.Domain;
-using Carteira.Domain.Contexto;
+﻿using Carteira.Entity;
+using Carteira.Entity.Contexto;
 using Carteira.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
-namespace Carteira.Controllers
+namespace Carteira.Areas.Administrador.Controllers
 {
+    [Area("Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class CorretoraController : Controller
     {
         private readonly Context _context;
@@ -40,9 +39,10 @@ namespace Carteira.Controllers
             return View(corretora);
         }
 
+
         public IActionResult Index(CorretoraFiltro filtro)
         {
-            if(filtro == null)
+            if (filtro == null)
             {
                 filtro = new CorretoraFiltro();
             }
@@ -51,13 +51,13 @@ namespace Carteira.Controllers
                 var corretoras = _context.Corretoras.ToList();
                 filtro.Corretoras = corretoras;
             }
-            
+
             return View(filtro);
         }
 
         private PropertyInfo getProperty(string name)
         {
-            var properties = typeof(Carteira.Domain.Corretora).GetProperties();
+            var properties = typeof(Carteira.Entity.Corretora).GetProperties();
             PropertyInfo prop = null;
             foreach (var item in properties)
             {
@@ -77,7 +77,7 @@ namespace Carteira.Controllers
         [HttpPost]
         public IActionResult Pagination()
         {
-            
+
             List<Corretora> corretoras = _context.Corretoras.ToList();
             var totalCorretoras = corretoras.Count();
 
@@ -96,7 +96,7 @@ namespace Carteira.Controllers
                 {
                     var columnName = Request.Form[$"columns[{columnIndex}][data]"].ToString();
 
-                    if(pageSize > 0)
+                    if (pageSize > 0)
                     {
                         var prop = getProperty(columnName);
                         if (sortDirection == "asc")
@@ -127,7 +127,7 @@ namespace Carteira.Controllers
 
             //var options = new JsonSerializerSettings
             //{
-                
+
             //};
 
             //var js = Json(corretoras);

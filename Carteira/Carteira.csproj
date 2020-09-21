@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_NavBarUser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="libwkhtmltox.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\Shared\_NavBarUser.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +38,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +51,9 @@
     <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
     <ProjectReference Include="..\Carteira.Service\Carteira.Service.csproj" />
     <ProjectReference Include="..\Cateira.Domain\Carteira.Domain.csproj" />
+    <ProjectReference Include="..\Carteira.Entity\Carteira.Entity.csproj" />
+    <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
+    <ProjectReference Include="..\Carteira.Service\Carteira.Service.csproj" />
   </ItemGroup>
 
 </Project>

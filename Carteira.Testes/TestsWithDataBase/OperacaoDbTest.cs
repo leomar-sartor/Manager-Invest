@@ -1,6 +1,6 @@
-﻿using Carteira.Domain;
-using Carteira.Domain.Contexto;
-using Carteira.Domain.Enums;
+﻿using Carteira.Entity;
+using Carteira.Entity.Contexto;
+using Carteira.Entity.Enuns;
 using Carteira.Repository;
 using Carteira.Service;
 using Carteira.Testes.Utilitarios.ObjectDefault;

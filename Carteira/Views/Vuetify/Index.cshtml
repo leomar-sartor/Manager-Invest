@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+    <div class="row">
+        <h1 class="display-4">Welcome {{ mensagem }}</h1>
+
+        <v-btn text small color="error">Error</v-btn>
+    </div>
+
+@section Scripts{
+    <script>
+        new Vue({
+            el: '#app',
+            //vuetify: new Vuetify(),
+            data: {
+                mensagem: 'VueJS',
+                nome: ''
+            }
+        });
+    </script>
+}

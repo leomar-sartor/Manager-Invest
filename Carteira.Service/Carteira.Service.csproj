@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Carteira.Entity\Carteira.Entity.csproj" />
     <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
-    <ProjectReference Include="..\Cateira.Domain\Carteira.Domain.csproj" />
   </ItemGroup>
 
 </Project>

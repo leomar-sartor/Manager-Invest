@@ -16,6 +16,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.ConsoleTestes", "..\Carteira.ConsoleTestes\Carteira.ConsoleTestes.csproj", "{2352BF9E-5FD2-4100-AFC3-CD39EEE9BB13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.Domain", "..\Cateira.Domain\Carteira.Domain.csproj", "{6F50F75C-0D07-4895-854C-17150AC21A9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carteira.Entity", "..\Carteira.Entity\Carteira.Entity.csproj", "{05369481-F5DC-4A78-803D-6637F1A03068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +52,10 @@ Global
 		{6F50F75C-0D07-4895-854C-17150AC21A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F50F75C-0D07-4895-854C-17150AC21A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F50F75C-0D07-4895-854C-17150AC21A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05369481-F5DC-4A78-803D-6637F1A03068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05369481-F5DC-4A78-803D-6637F1A03068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05369481-F5DC-4A78-803D-6637F1A03068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05369481-F5DC-4A78-803D-6637F1A03068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

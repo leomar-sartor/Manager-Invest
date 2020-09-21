@@ -1,4 +1,4 @@
-﻿using Carteira.Domain;
+﻿using Carteira.Entity;
 using System.Collections.Generic;
 
 namespace Carteira.Testes.Utilitarios.ObjectDefault

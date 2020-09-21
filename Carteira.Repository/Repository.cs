@@ -1,4 +1,4 @@
-﻿using Carteira.Domain.Contexto;
+﻿using Carteira.Entity.Contexto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

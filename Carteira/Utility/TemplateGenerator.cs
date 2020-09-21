@@ -18,23 +18,12 @@ namespace Carteira.Utility
                         </head>
 
                         <body>
-                            <div class='header'>
-                                <h1>
-                                    This is my First PDF in AspNet Core!!!
-                                </h1>
-                            </div>
-
-                            <table align='center'>
-                                <tr>
-                                    <th> Name </th>
-                                    <th> LastName </th>
-                                    <th> Age </th>
-                                    <th> Gender </th>
-                                </tr>
+        
+        <table>
                 "
             );
 
-            foreach ( var emp in employees)
+            foreach (var emp in employees)
             {
                 sb.AppendFormat
                 (
@@ -56,7 +45,8 @@ namespace Carteira.Utility
             sb.Append
             (
                 @"
-                            </table>
+</table>
+
                         </body>
                     <html>
                 "
