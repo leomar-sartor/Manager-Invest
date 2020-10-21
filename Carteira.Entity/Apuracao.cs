@@ -1,4 +1,6 @@
-﻿namespace Carteira.Entity
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Carteira.Entity
 {
     public class Apuracao
     {
@@ -16,6 +18,7 @@
 
         public Operacao Operacao { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Valor { get; set; }
     }
 }

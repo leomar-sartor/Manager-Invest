@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Carteira.Areas.Administrador.Controllers
 {
     [Area("Administrador")]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class CorretoraController : Controller
     {
         private readonly Context _context;

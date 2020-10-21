@@ -2,12 +2,14 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-area="Administrador" asp-controller="Ativo" asp-action="Create">Create New</a>*@
+    @Html.ActionLink("Novo", "Create", "Ativo", new { Area = "Administrador" })
 </p>
 <table class="table">
     <thead>

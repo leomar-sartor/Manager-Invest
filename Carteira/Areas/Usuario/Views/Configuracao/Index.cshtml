@@ -1,8 +1,31 @@
-﻿
+﻿@model Carteira.Entity.Configuracao
+
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_DashboardUser.cshtml";
 }
 
-<h1>Index</h1>
+<div class="card">
+    <div class="card-header text-muted">
+        <h1>Configurações</h1>
+    </div>
+    <div class="card-body">
 
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+
+                <label asp-for="Usuario" class="control-label"></label>
+                <input asp-for="Usuario" class="form-control" />
+                <span asp-validation-for="Usuario" class="text-danger"></span>
+
+                <label asp-for="Senha" class="control-label"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+        </div>
+
+    </div>
+</div>

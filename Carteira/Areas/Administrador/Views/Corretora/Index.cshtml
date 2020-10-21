@@ -2,19 +2,25 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
     <div class="card">
         <div class="card-header text-muted">
             <div id="contect-default-header">
-                <a class="btn btn-sm btn-primary float-left" asp-action="Index" asp-controller="Home" role="button">
-                    <i class="fa fa-arrow-circle-left"></i>
-                    Voltar
-                </a>
-                <a class="btn btn-sm btn-info float-right" asp-action="Create" role="button">
-                    <i class="fa fa-plus-circle"></i>
-                    Novo
-                </a>
+                @*<a class="btn btn-sm btn-primary float-left" asp-action="Index" asp-controller="Home" role="button">
+                        <i class="fa fa-arrow-circle-left"></i>
+                        Voltar
+                    </a>*@
+
+                @Html.ActionLink("Voltar", "Index", "Home", new { Area = "" }, new { @class = "btn btn-sm btn-primary float-left" })
+
+                @*<a class="btn btn-sm btn-info float-right" asp-area="Administrador" asp-controller="Corretora" asp-action="Create" role="button">
+                        <i class="fa fa-plus-circle"></i>
+                        Novo
+                    </a>*@
+
+                @Html.ActionLink("Novo", "Create", "Corretora", new { Area = "Administrador" }, new { @class = "btn btn-sm btn-info float-right" })
             </div>
         </div>
         <div class="card-body" style="padding:0.3em;">
@@ -95,7 +101,7 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form asp-action="Delete">
+            <form method="post" asp-action="Delete">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -119,12 +125,14 @@
     <script>
         $(document).ready(function () {
 
-            $('.delete-item').on("click", function () {
-                let Id = $(this).data('id');
+            
+            $('.delete-item').on("click", function (event) {
+                //
+//                event.preventDefault();
+                let Id = $(this).attr('data-id');
                 console.log("ID: " + Id);
                 $('#modal-delete-id').val(Id);
             });
-
 
 
             //    //datatables.net/reference/option/language
@@ -135,9 +143,16 @@
 
             $('#table-index').DataTable({
                 "initComplete": function () {
-                    $('.element-tooltip').hover(function () {
-                        $(this).tooltip('toggle');
+                    $('.delete-item').on("click", function () {
+                        //
+                        //let Id = $(this).attr('data-id');
+                        //console.log("ID: " + Id);
+                        //$('#modal-delete-id').val(Id);
                     });
+                    console.log('Carregou');
+                    //$('.element-tooltip').hover(function () {
+                    //    $(this).tooltip('toggle');
+                    //});
                 },
                 "processing": true,
                 "serverSide": true,
@@ -156,7 +171,7 @@
                     },
                 },
                 "ajax": {
-                    "url": "/Corretora/Pagination",
+                    "url": "Pagination",
                     "type": "POST",
                     "data": function (d) {
                         d.myKey = $("#contentFilter").serialize();
@@ -170,9 +185,9 @@
                         "orderable": false,
                         render: function (data, type) {
 
-                            let detail = "<a style='margin-left: 5px;' class='btn btn-sm btn-info element-tooltip' href='/Corretora/Details/1' role='button' data-toggle='tooltip' data-placement='left' title='Detalhes'> <i class='fa fa-list-alt'></i></a>";
+                            let detail = "<a style='margin-left: 5px;' class='btn btn-sm btn-info element-tooltip' href='/Administrador/Corretora/Details/1' role='button' data-toggle='tooltip' data-placement='left' title='Detalhes'> <i class='fa fa-list-alt'></i></a>";
 
-                            let edit = "<a style='margin-left: 5px;' class='btn btn-sm btn-warning element-tooltip' href='/Corretora/Edit/1' role='button' data-toggle='tooltip' data-placement='top' title='Editar'> <i class='fa fa-edit'></i></a>";
+                            let edit = "<a style='margin-left: 5px;' class='btn btn-sm btn-warning element-tooltip' href='/Administrador/Corretora/Edit/1' role='button' data-toggle='tooltip' data-placement='top' title='Editar'> <i class='fa fa-edit'></i></a>";
 
                             let remove = "<a  style='margin-left: 5px;' class='btn btn-sm btn-danger delete-item element-tooltip' data-toggle='modal' data-target='#deleteModal' data-id='1' role='button' data-toggle='tooltip' data-placement='right' title='Deletar'><i class='fa fa-trash'></i> </a>";
 
@@ -198,9 +213,9 @@
 
             var eventFired = function (type) {
                 //alert("Disparou!!!");
-                $('.element-tooltip').hover(function () {
-                    $(this).tooltip('toggle');
-                });
+                //$('.element-tooltip').hover(function () {
+                //    $(this).tooltip('toggle');
+                //});
             }
 
             $('#table-index')
@@ -211,7 +226,7 @@
 
         });
 
-                        //$(document)
+                            //$(document)
     </script>
 }
 

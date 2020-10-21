@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/navbar.css" />
-    <link href="~/lib/data-tables/datatables.min.css" rel="stylesheet" />
+    @*<link href="~/lib/data-tables/datatables.min.css" rel="stylesheet" />*@
+    <link href="~/lib/data-tables/datatables.css" rel="stylesheet" />
+    
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
@@ -122,8 +124,10 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/dist/app.js"></script>
-        <script src="~/lib/data-tables/datatables.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        @*<script src="~/lib/data-tables/datatables.min.js"></script>*@
+        <script src="~/lib/data-tables/datatables.js"></script>
+        <script src="~/lib/data-tables/DataTables-1.10.21/js/dataTables.bootstrap4.js"></script>
+        @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>*@
     </div>
 
     @RenderSection("Scripts", required: false)

@@ -17,6 +17,8 @@ namespace Carteira.Entity.Contexto
 
         public virtual DbSet<Apuracao> Apuracoes { get; set; }
         public virtual DbSet<Deposito> Depositos { get; set; }
+
+        public virtual DbSet<Configuracao> Configuracoes { get; set; }
         #endregion
 
         #region Construtores

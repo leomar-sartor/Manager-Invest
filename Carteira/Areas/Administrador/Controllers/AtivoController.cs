@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Carteira.Areas.Administrador.Controllers
 {
     [Area("Administrador")]
-    [Authorize(Roles = "Administrador")]
+   // [Authorize(Roles = "Administrador")]
     public class AtivoController : Controller
     {
         private readonly Context _context;
