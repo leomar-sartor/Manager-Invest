@@ -98,7 +98,8 @@ namespace Carteira.Areas.Administrador.Controllers
         // GET: At/Delete/5
         public ActionResult Delete(long id)
         {
-            return View();
+            var ativo = _context.Ativos.Where(m => m.Id == id).FirstOrDefault();
+            return View(ativo);
         }
 
         // POST: Arquivoes/Delete/5

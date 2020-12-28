@@ -49,5 +49,7 @@ namespace Carteira.Entity
 
         //Relacionamentos
         public ICollection<Operacao> Operacoes { get; set; }
+
+        public ICollection<AtivoUsuario> AtivosUsuarios { get; set; }
     }
 }

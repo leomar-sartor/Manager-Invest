@@ -2,13 +2,12 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_DashboardUser.cshtml";
 }
 
 <h1>Index</h1>
 
 <p>
-    @*<a asp-area="Administrador" asp-controller="Ativo" asp-action="Create">Create New</a>*@
     @Html.ActionLink("Novo", "Create", "Ativo", new { Area = "Administrador" })
 </p>
 <table class="table">
@@ -40,15 +39,15 @@
                     @Html.DisplayFor(modelItem => item.Sigla)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TipoInvestimento)                  
+                    @Html.DisplayFor(modelItem => item.TipoInvestimento)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TipoPapel)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.ActionLink("Editar", "Edit", "Ativo", new { Area = "Administrador", Id = @item.Id })  |
+                    @Html.ActionLink("Detalhes", "Details", "Ativo", new { Area = "Administrador", Id = @item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", "Ativo", new { Area = "Administrador", Id = @item.Id })
                 </td>
             </tr>
         }

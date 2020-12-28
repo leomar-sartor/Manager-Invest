@@ -10,11 +10,13 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_Layout.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>800</WebStackScaffolding_ViewDialogWidth>
-    <WebStackScaffolding_DbContextTypeFullName>Carteira.Domain.Contexto.Context</WebStackScaffolding_DbContextTypeFullName>
+    <WebStackScaffolding_DbContextTypeFullName>Carteira.Entity.Contexto.Context</WebStackScaffolding_DbContextTypeFullName>
     <ShowAllFiles>false</ShowAllFiles>
     <_SelectedScaffolderID>IdentityScaffolder</_SelectedScaffolderID>
     <_SelectedScaffolderCategoryPath>root/Identity</_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
     <WebStackScaffolding_IdentityDialogWidth>600</WebStackScaffolding_IdentityDialogWidth>
+    <View_SelectedScaffolderID>RazorViewScaffolder</View_SelectedScaffolderID>
+    <View_SelectedScaffolderCategoryPath>root/View</View_SelectedScaffolderCategoryPath>
   </PropertyGroup>
 </Project>

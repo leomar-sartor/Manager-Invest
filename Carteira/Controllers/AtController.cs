@@ -49,7 +49,7 @@ namespace Carteira.Controllers
                 ColorMode = ColorMode.Color,
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 50},
+                Margins = new MarginSettings { Top = 15},
                 DocumentTitle = "FIRST PDF"
             };
 
@@ -59,7 +59,7 @@ namespace Carteira.Controllers
                 HtmlContent = TemplateGenerator.GetHTMLString(),
                 //Page = "https://code-maze.com/",
                 WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
-                HeaderSettings = { Spacing = 0, FontName = "Arial", FontSize = 10, Right = "Pag. [page] de [toPage]", Line = true, Center = "<div id='fundo'> TESTE LEOMAR </div>info", HtmUrl = Path.Combine(Directory.GetCurrentDirectory(), "assets", "header.html") },
+                HeaderSettings = { Spacing = 0, FontName = "Arial", FontSize = 15, Right = "Pag. [page] de [toPage]", Line = true, Center = "TESTE LEOMAR" },
                 FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Rodapé" },
             };
 
@@ -294,6 +294,46 @@ namespace Carteira.Controllers
             return File(file, "application/pdf");
         }
 
-       
+        public ActionResult Default()
+        {
+            var dados = DataStorage.GetEmployees();
+
+            var template = new RelatorioTemplate();
+            template.Body.FontSize = 48;
+            var elements = template.GeneratePDF(dados);
+
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4,
+                Margins = new MarginSettings { Top = 1, Bottom = 0, Left = 0, Right = 0 },
+                DocumentTitle = "FIRST PDF"
+            };
+
+            var objectSettings = new ObjectSettings
+            {
+                //PagesCount = true,
+                HtmlContent = elements,
+                //Page = "https://code-maze.com/",
+                WebSettings = { DefaultEncoding = "utf-8" }
+                //HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
+                //FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" },
+            };
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var file = _converter.Convert(pdf);
+
+            //return Ok("Sucessfuly created your First PDF Document");
+            //return File(file, "application/pdf", "EmployeeReport.pdf");
+            return File(file, "application/pdf");
+        }
+
+
     }
 }

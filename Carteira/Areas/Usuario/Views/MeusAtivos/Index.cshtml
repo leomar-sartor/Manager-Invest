@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Carteira.Entity.AtivoUsuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @Html.ActionLink("Novo", "Create", "AtivosUsuario", new { Area = "Usuario" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo.Sigla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo.Sigla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "AtivosUsuario", new { Area = "Usuario", Id = @item.Id })  |
+                    @Html.ActionLink("Detalhes", "Details", "AtivosUsuario", new { Area = "Usuario", Id = @item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", "AtivosUsuario", new { Area = "Usuario", Id = @item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

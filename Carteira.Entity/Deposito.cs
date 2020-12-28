@@ -25,6 +25,7 @@ namespace Carteira.Entity
         [Display(Name = "Acumulado")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal SaldoAcumulado { get; set; }
+
         public Corretora Corretora { get; set; }
     }
 }

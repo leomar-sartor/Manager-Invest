@@ -1,0 +1,44 @@
+﻿@model Carteira.Entity.Configuracao
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardUser.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Configuracao</h4>
+<hr />
+@using (Html.BeginForm("Edit", "Configuracao", FormMethod.Post))
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Nome)
+        @Html.EditorFor(model => model.Nome)
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Usuario)
+        @Html.EditorFor(model => model.Usuario)
+        @Html.ValidationMessageFor(model => model.Usuario)
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Senha)
+        @Html.EditorFor(model => model.Senha)
+        @Html.ValidationMessageFor(model => model.Senha)
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -13,6 +13,7 @@ namespace Carteira.Entity.Contexto
         #region DbSet's
         public virtual DbSet<Corretora> Corretoras { get; set; }
         public virtual DbSet<Ativo> Ativos { get; set; }
+        public virtual DbSet<AtivoUsuario> AtivosUsuario { get; set; }
         public virtual DbSet<Operacao> Operacoes { get; set; }
 
         public virtual DbSet<Apuracao> Apuracoes { get; set; }
@@ -82,6 +83,11 @@ namespace Carteira.Entity.Contexto
                .HasOne(m => m.Apuracao)
                .WithOne(m => m.Operacao)
                .HasForeignKey("Apuracao");
+
+            modelBuilder.Entity<AtivoUsuario>()
+                .HasOne(m => m.Ativo)
+                .WithMany(m => m.AtivosUsuarios)
+                .IsRequired();
         }
     }
 }
