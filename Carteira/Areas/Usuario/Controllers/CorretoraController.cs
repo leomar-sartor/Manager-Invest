@@ -5,77 +5,69 @@ using System.Threading.Tasks;
 using Carteira.Entity;
 using Carteira.Entity.Contexto;
 using Carteira.Repository;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Carteira.Areas.Usuario.Controllers
 {
     [Area("Usuario")]
-    public class MeusAtivosController : Controller
+    public class CorretoraController : Controller
     {
         private readonly Context _ctx;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly AtivoRepository _rAtivo;
+        private readonly CorretoraRepository _rCorretora;
 
-        public MeusAtivosController(UserManager<ApplicationUser> userManager)
+        public CorretoraController()
         {
             _ctx = new Context();
-            _userManager = userManager;
-            _rAtivo = new AtivoRepository(_ctx);
+            _rCorretora = new CorretoraRepository(_ctx);
         }
-
         public IActionResult Index()
         {
-            
-            var ativos = _ctx.Ativos.ToList();
+            var corretora = _rCorretora.Listar();
 
-            //var userLogado =
-            //    _userManager.FindByNameAsync(HttpContext.User.Identity.Name).Result;
-
-            return View(ativos);
+            return View(corretora);
         }
+
 
         public IActionResult Create()
         {
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] Ativo ativo)
+        public async Task<IActionResult> Create([FromForm] Corretora corretora)
         {
             if (ModelState.IsValid)
             {
-                await _ctx.Ativos.AddAsync(ativo);
+                await _ctx.Corretoras.AddAsync(corretora);
 
                 await _ctx.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(ativo);
+            return View(corretora);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var ativo = await _ctx.Ativos.FirstOrDefaultAsync(m => m.Id == id);
+            var corretora = await _ctx.Corretoras.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ativo == null)
-                ativo = new Ativo();
+            if (corretora == null)
+                corretora = new Corretora();
 
-            return View(ativo);
+            return View(corretora);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Ativo ativo)
+        public async Task<IActionResult> Edit(Corretora corretora)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _ctx.Ativos.Update(ativo);
+                    _ctx.Corretoras.Update(corretora);
                     await _ctx.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException e)
@@ -90,15 +82,15 @@ namespace Carteira.Areas.Usuario.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var ativo = await _ctx.Ativos
+            var corretora = await _ctx.Corretoras
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ativo == null)
+            if (corretora == null)
             {
                 return NotFound();
             }
 
-            return View(ativo);
+            return View(corretora);
         }
 
         // GET: At/Delete/5
@@ -112,8 +104,8 @@ namespace Carteira.Areas.Usuario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            _rAtivo.Excluir(m => m.Id == id);
-            _rAtivo.Salvar();
+            _rCorretora.Excluir(m => m.Id == id);
+            _rCorretora.Salvar();
 
             return RedirectToAction(nameof(Index));
         }

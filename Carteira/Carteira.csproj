@@ -12,15 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\_NavBarUser.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="libwkhtmltox.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Views\Shared\_NavBarUser.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,5 +49,7 @@
     <ProjectReference Include="..\Carteira.Repository\Carteira.Repository.csproj" />
     <ProjectReference Include="..\Carteira.Service\Carteira.Service.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

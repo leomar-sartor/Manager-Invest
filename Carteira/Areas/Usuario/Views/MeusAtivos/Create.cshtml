@@ -1,0 +1,41 @@
+﻿@model Carteira.Entity.Ativo
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardUser.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Ativo</h4>
+<hr />
+
+@using (Html.BeginForm("Create", "MeusAtivos", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Nome)
+        @Html.EditorFor(model => model.Nome)
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Sigla)
+        @Html.EditorFor(model => model.Sigla)
+        @Html.ValidationMessageFor(model => model.Sigla)
+    </div>
+    <div class="form-group">
+        <input-for model="TipoInvestimento" select-show-id="true" />
+    </div>
+    <div class="form-group">
+        <input-for model="TipoPapel" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+}
+<div>
+    @Html.ActionLink("Voltar", "Index", "MeusAtivos", new { Area = "Usuario" })
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

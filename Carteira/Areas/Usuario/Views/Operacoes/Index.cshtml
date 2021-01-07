@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Carteira.Entity.Operacao>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardUser.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    @Html.ActionLink("Novo", "Create", "Operacoes", new { Area = "Usuario" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoOperacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxaLiquidacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Corretagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaldoCotas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoMedioDoAtivo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoOperacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxaLiquidacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Corretagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaldoCotas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoMedioDoAtivo)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", "Operacoes", new { Area = "Usuario", Id = @item.Id })  |
+                @Html.ActionLink("Detalhes", "Details", "Operacoes", new { Area = "Usuario", Id = @item.Id }) |
+                @Html.ActionLink("Delete", "Delete", "Operacoes", new { Area = "Usuario", Id = @item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
