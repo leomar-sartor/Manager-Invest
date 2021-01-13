@@ -16,6 +16,8 @@ using DinkToPdf;
 using System.IO;
 using Carteira.Utility;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Carteira
 {
@@ -99,6 +101,22 @@ namespace Carteira
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //< globalization culture = "pt-BR" uiCulture = "pt-BR" />
+            //var cultureInfo = new CultureInfo("en-US");
+            //cultureInfo.NumberFormat.NumberGroupSeparator = ",";
+
+            //CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            //CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+            // Definindo a cultura padrão: pt-BR
+            var supportedCultures = new[] { new CultureInfo("pt-BR") };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
